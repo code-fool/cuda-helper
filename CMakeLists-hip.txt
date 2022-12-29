@@ -1,32 +1,23 @@
 cmake_minimum_required(VERSION 3.20 FATAL_ERROR)
 
-project(cuda-helper LANGUAGES CXX CUDA)
-
-set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+project(cuda-helper LANGUAGES CXX HIP)
 
 include(FetchContent)
 
-include(CheckLanguage)
-check_language(CUDA)
-set(CMAKE_CUDA_STANDARD 11)
-set(CMAKE_CUDA_STANDARD_REQUIRED ON)
 
-if(NOT CUDAToolkit_FOUND)
-    include(FindCUDAToolkit)
-endif()
-include_directories(${CMAKE_CUDA_TOOLKIT_INCLUDE_DIRECTORIES})
 
 include_directories(include)
 
+
+list(APPEND CMAKE_PREFIX_PATH /opt/rocm/hip /opt/rocm)
+find_package(hip REQUIRED)
 
 
 file(GLOB_RECURSE source_file LIST_DIRECTORIES false src/*.cpp src/*.c src/*.cu)
 message(${PROJECT_NAME})
 add_library(${PROJECT_NAME} STATIC ${source_file})
 target_link_libraries(${PROJECT_NAME}
-                        PRIVATE CUDA::cudart
-                        PRIVATE CUDA::cuda_driver
+                        PRIVATE hip::device
                         )
 option(CUDA_HELPER_BUILD_TESTS "Enable building google test units" OFF)
 
@@ -45,9 +36,7 @@ if(CUDA_HELPER_BUILD_TESTS)
     set(TEST_EXE ${PROJECT_NAME}-test)
     add_executable(${TEST_EXE} ${test_files})
     target_link_libraries(${TEST_EXE}
-                          PRIVATE CUDA::cudart
-                          PRIVATE CUDA::cuda_driver
-                          PRIVATE CUDA::cupti   
+                          PRIVATE hip::device
                           PRIVATE gtest
                           PRIVATE gtest_main)
     include(GoogleTest)
