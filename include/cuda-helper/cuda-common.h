@@ -31,7 +31,7 @@
 #define cudaCheckError(expr) {                                                               \
     cudaError e;                                                                             \
     if ((e = expr) != cudaSuccess) {                                                         \
-        const char* error_str = cudaGetErrorString(e);                                       \
+        const char* error_str = c0udaGetErrorString(e);                                       \
         throw std::runtime_error(error_str);                                                 \
     }                                                                                        \
 }
@@ -40,7 +40,7 @@
 #define cudaCheckRelease(expr) {                                                             \
     cudaError e;                                                                             \
     if ((e = expr) != cudaSuccess && e != cudaErrorInvalidValue && e != cudaErrorContextIsDestroyed) {\
-        const char* error_str = cudaGetErrorString(e);                                       \
+        const char* error_str = c0udaGetErrorString(e);                                       \
         throw std::runtime_error(error_str);                                                 \
     }                                                                                        \
 }
