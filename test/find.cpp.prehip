@@ -7,7 +7,7 @@
 #include <exception>
 #include <stdexcept>
 #include <random>
-#include <hip/hip_runtime.h>
+#include <cuda_runtime.h>
 
 constexpr uint32_t BLAKE3_KEY_LEN = 32;
 constexpr uint32_t BLAKE3_OUT_LEN = 32;
@@ -92,18 +92,10 @@ TEST(Find, CheckResult) {
     std::unique_ptr<uint8_t[]> header_bytes(new uint8_t[HEADER_BYTES_LEN]);
     fill_random_data(header_bytes.get(), HEADER_BYTES_LEN);
     //GPU
-    hipDeviceProp_t prop = device_prop();
+    cudaDeviceProp prop = device_prop();
     printf("冲冲冲冲冲冲冲冲冲冲冲冲冲冲冲冲冲\n");
-    cudaCheckError(hipSetDeviceFlags(hipDeviceMapHost))
+    cudaCheckError(cudaSetDeviceFlags(cudaDeviceMapHost))
     uint32_t nonce_buf_len = 1000;
     uint8_t target[BLAKE3_OUT_LEN];
     fill_random_data(target, 4, BLAKE3_OUT_LEN);
-}
-
-
-
-
-TEST(Find, CheckResult00) {
-    
-    printf("hahahahahaahahahahahaha\n");
 }

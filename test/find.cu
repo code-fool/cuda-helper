@@ -87,13 +87,13 @@ std::string cur_time_string() {
 
 
 
-TEST(Find, CheckResult) {
+TEST(Find0, CheckResult1) {
     constexpr uint32_t HEADER_BYTES_LEN = 200;
     std::unique_ptr<uint8_t[]> header_bytes(new uint8_t[HEADER_BYTES_LEN]);
     fill_random_data(header_bytes.get(), HEADER_BYTES_LEN);
     //GPU
     hipDeviceProp_t prop = device_prop();
-    printf("冲冲冲冲冲冲冲冲冲冲冲冲冲冲冲冲冲\n");
+    printf("111111111冲冲冲冲冲冲冲冲冲冲冲冲冲冲冲冲冲\n");
     cudaCheckError(hipSetDeviceFlags(hipDeviceMapHost))
     uint32_t nonce_buf_len = 1000;
     uint8_t target[BLAKE3_OUT_LEN];
@@ -103,7 +103,7 @@ TEST(Find, CheckResult) {
 
 
 
-TEST(Find, CheckResult00) {
+TEST(Find0, CheckResult2) {
     
-    printf("hahahahahaahahahahahaha\n");
+    printf("99999999hahahahahaahahahahahaha\n");
 }
