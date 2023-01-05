@@ -10,4 +10,4 @@ cmake -S . -B $BUILD_DIR -DCMAKE_CXX_COMPILER=/opt/rocm-5.4.0/llvm/bin/clang++ -
 cmake --build $BUILD_DIR --clean-first
 
 cd $BUILD_DIR
-./blake3_cuda-test
+./cuda_helper-test

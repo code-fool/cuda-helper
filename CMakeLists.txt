@@ -4,7 +4,7 @@ if(HIP_HELPER_BUILD)
     message(INFO "chichichichichichichichichichichichi")
 endif()
 # project(cuda-helper LANGUAGES CXX CUDA)
-project(blake3_cuda LANGUAGES CXX HIP)
+project(cuda_helper LANGUAGES CXX HIP)
 
 # set(CMAKE_CXX_STANDARD 11)
 # set(CMAKE_CXX_STANDARD_REQUIRED ON)
