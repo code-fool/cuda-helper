@@ -6,6 +6,7 @@ option(HIP_HELPER_BUILD "Enable building HIP" OFF)
 if(HIP_HELPER_BUILD)
     message(INFO "chichichichichichichichichichichichi")
 else()
+    message(INFO "kakakakakakakakaakakak")
     # set(CMAKE_CXX_STANDARD 11)
     # set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
